@@ -22,7 +22,7 @@ def index(request):
     return render(request, "Money/index.html")
 
 def showregister(request):
-    return redirect(request,'Money/register.html')
+    return render(request,'Money/register.html')
 
 
 def registeruser(request):
@@ -32,19 +32,28 @@ def registeruser(request):
     first_name = request.POST['fname']
     last_name = request.POST['lname']
     phone = request.POST['phone']
-    user = UserOfApp.objects.create_user(email=email,password=password,first_name=first_name, last_name=last_name,phone=phone)
+    user = UserOfApp.objects.create_user(username=email,email=email,password=password,first_name=first_name, last_name=last_name,phone=phone)
     user.save()
     if device == 'web':
         render(request,'Money/login.html')
     else:
         return HttpResponse(json.dumps(["True"]), content_type='application/json')
 
-def authenticate(request):
-    username = request.POST['username']
+def authenticateuser(request):
+    device = request.POST['device']
+    email = request.POST['email']
     password = request.POST['password']
-    l = Student.objects.filter(username=username, password=password)
-    if len(l):
-        request.session['username'] = username
-        return HttpResponseRedirect(reverse('showhomepage'))
+    user = authenticate(username=username, password=password)
+    login(request, user)
+    if user is not None:
+        login(request, user)
+        if device == 'web':
+            return render(request, 'Money/home.html', {})
+        else:
+            return HttpResponse(json.dumps(["True"]), content_type='application/json')
+
     else:
-        return HttpResponseRedirect(reverse('libraryindex'))
+        if device == 'web':
+            return render(request, 'Money/login.html', {'loginfail' : True })
+        else:
+            return HttpResponse(json.dumps(["False"]), content_type='application/json')
