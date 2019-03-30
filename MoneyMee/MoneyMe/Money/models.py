@@ -10,7 +10,7 @@ class UserOfApp(AbstractUser):
     # city= models.CharField(max_length=100)
     # phone= models.CharField(max_length=10)
     phone= models.CharField(max_length=10)
-
+    
 class Type(models.Model):
     tid = models.AutoField(primary_key= True)
     tname = models.CharField(max_length=100)
@@ -26,7 +26,6 @@ class BankAccount(models.Model):
     balance = models.FloatField(default=0)
 
 class Transaction(models.Model):
-    trid = models.AutoField(primary_key= True)
     aid = models.ForeignKey(UserOfApp, on_delete=models.CASCADE, db_column='aid')
     deposit = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)

@@ -24,10 +24,9 @@ SECRET_KEY = ')3fbn(!5lvjkow+096xwl6hyr9-vgo$m=f7xsah+*ru0-8lrqw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+AUTH_USER_MODEL = 'Money.UserOfApp'
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'Money.UserOfApp'
 
 # Application definition
 
@@ -80,7 +79,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Money1',
+        'NAME': 'Money',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
