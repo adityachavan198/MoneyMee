@@ -25,7 +25,7 @@ SECRET_KEY = 'ayfi$**e+zp4d=1!91u5%y%igwh3xbm00yp8%5hb@(jajq_^l6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'Money.UserOfApp'
 
