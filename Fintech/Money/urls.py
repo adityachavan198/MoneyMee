@@ -7,6 +7,11 @@ urlpatterns = [
     path('register/',views.showregister,name='showregister'),
     path('registeruser/',views.registeruser,name='registeruser'),
     path('loginuser/', views.authenticateuser, name='loginuser'),
-    path('login/', views.showlogin, name='showlogin')
+    path('login/', views.showlogin, name='showlogin'),
+    path('summary/', views.summary, name='summary'),
+    path('showapi/',views.showapi,name='showapi'),
+    path('api/',views.doit,name='fromapi'),
+    # path('showsummary/', views.showsumary, name='showsummary')
+    # path('trial/', views.trial, name='trial')
     # path('home/', views.home, name='home'),
 ]

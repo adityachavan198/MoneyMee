@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% for i in transaction %}
+    <td>{{i.trid}}</td>
+    <td>{{i.aid}}</td>
+    <td>{{i.deposit}}</td>
+    <td>{{i.created_at}}</td>
+    <td>{{i.amount}}</td>
+    <td>{{i.type}}</td>
+
+    {% endfor %}
+  </body>
+</html>

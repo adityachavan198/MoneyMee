@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form class="" action="{% url 'fromapi' %}" method="post">
+      {% csrf_token %}
+      <input type="text" name="BankAccount_id" value="">
+      <input type="text" name="deposit" value="">
+      <input type="text" name="amount" value="">
+      <input type="text" name="type_id" value="">
+      <input type="submit" name="submit" value="submit">
+    </form>
+  </body>
+</html>
