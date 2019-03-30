@@ -20,3 +20,10 @@ def index(request):
     #     # 'logs': Log.objects.all()
     # }
     return render(request, "Money/index.html")
+
+def showregister(request):
+    return redirect(request,'library/register.html')
+
+
+
+    

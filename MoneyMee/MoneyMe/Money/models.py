@@ -11,6 +11,10 @@ class UserOfApp(AbstractUser):
     # phone= models.CharField(max_length=10)
     phone= models.CharField(max_length=10)
 
+class Type(models.Model):
+    tid = models.AutoField(primary_key= True)
+    tname = models.CharField(max_length=100)
+
 class Bank(models.Model):
     bid = models.AutoField(primary_key= True)
     bank_name = models.CharField(max_length=100)
@@ -27,7 +31,3 @@ class Transaction(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     amount = models.FloatField(default=0)
     type = models.ForeignKey(Type, on_delete=models.CASCADE, db_column='tid')
-
-class Type(models.Model):
-    tid = models.AutoField(primary_key= True)
-    tname = models.CharField(max_length=100)
