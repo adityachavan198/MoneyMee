@@ -3,16 +3,57 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    {% load static %}
+
+  	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+  	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+  	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
   </head>
   <body>
-    {% for i in transaction %}
-    <td>{{i.trid}}</td>
-    <td>{{i.aid}}</td>
-    <td>{{i.deposit}}</td>
-    <td>{{i.created_at}}</td>
-    <td>{{i.amount}}</td>
-    <td>{{i.type}}</td>
 
-    {% endfor %}
+    <table class="table text-center">
+      <thead>
+        <td>Transaction No</td>
+        <td>Account No</td>
+        <td>Transaction</td>
+        <td>Created_at</td>
+        <td>Amount</td>
+        <td>Type</td>
+      </thead>
+      {% for i in transaction %}
+      <tr>
+        <td>{{i.trid}}</td>
+        <td>{{i.aid}}</td>
+        <td>{% if i.deposit == True %} Deposit {% else %} Withdraw{% endif %}</td>
+        <td>{{i.created_at}}</td>
+        <td>{{i.amount}}</td>
+        <td>{{i.type}}</td>
+        <!-- <h2>row</h2> -->
+      </tr>
+      {% endfor %}
+    </table>
+    <div class="row text-center">
+      <div class="col">
+        <img class="img-fluid" src="{% static 'images/deposit.jpeg' %}">
+        <figcaption class="figure-caption">Deposits.</figcaption>
+      </div>
+      <div class="col">
+        <img class="img-fluid" src="{% static 'images/withdraw.jpeg' %}">
+        <figcaption class="figure-caption">Withdrawal.</figcaption>
+      </div>
+    </div>
+
+
+
+
+
   </body>
 </html>

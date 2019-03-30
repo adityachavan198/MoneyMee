@@ -22,7 +22,7 @@ class Bank(models.Model):
     bid = models.AutoField(primary_key= True)
     bank_name = models.CharField(max_length=100)
     def __str__(self):
-        return self.bank_name
+        return self.bid
 
 class BankAccount(models.Model):
     aid = models.AutoField(primary_key= True)
@@ -30,7 +30,8 @@ class BankAccount(models.Model):
     bid= models.ForeignKey(Bank, on_delete=models.CASCADE, db_column='bid')
     balance = models.FloatField(default=0)
     def __str__(self):
-        return str(self.uid.username)+"___"+str(self.bid.bank_name)
+        # return str(self.uid.username)+"___"+str(self.bid.bank_name)
+        return str(self.aid)
 
 class Transaction(models.Model):
     trid = models.AutoField(primary_key= True)
