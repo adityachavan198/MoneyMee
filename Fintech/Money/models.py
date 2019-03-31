@@ -13,6 +13,10 @@ class UserOfApp(AbstractUser):
     def __str__(self):
         return str(self.id)
 
+class CreditApplication(models.Model):
+    crid = models.AutoField(primary_key= True)
+    uid = models.ForeignKey(UserOfApp, on_delete=models.CASCADE, db_column='uid')
+
 
 class Type(models.Model):
     tid = models.AutoField(primary_key= True)

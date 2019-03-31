@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Summary</title>
     {% load static %}
 
   	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
@@ -18,13 +18,13 @@
   	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
   </head>
   <body>
-      <nav class="nav justify-content-center">
-          <a class="nav-link" href="{% url 'loginuser' %}">Home</a>
-          <a class="nav-link active disabled" href="#">Summary</a>
-          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-      </nav>
-    <table class="table text-center" style="margin-top: 100px; margin-bottom: 100px;">
-      <thead>
+    <nav class="nav justify-content-center mb-2 bg-warning">
+      <a class="nav-link display-4" href="{% url 'loginuser' %}">Home</a>
+      <a class="nav-link active disabled display-4" href="#">Summary</a>
+      <a class="nav-link display-4" href="{% url 'logout' %}">Logout</a>
+    </nav>
+    <table class="table text-center" style="margin-top: 25px; margin-bottom: 25px;">
+      <thead class="bg-dark text-light">
         <td>Transaction No</td>
         <td>Account No</td>
         <td>Transaction</td>
@@ -44,27 +44,94 @@
       </tr>
       {% endfor %}
     </table>
-    <div class="row text-center row">
-      <div class="col col-xs img-responsive">
-        <img class="img-fluid" src="{% static 'images/deposit.jpeg' %}">
-        <figcaption class="figure-caption">Deposits.</figcaption>
+
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Deposits Pie Chart
+            </button>
+          </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body text-center">
+            <div class="col col-xs img-responsive">
+              <img class="img-fluid" src="{% static 'images/deposit.jpeg' %}">
+              <figcaption class="figure-caption">Deposits</figcaption>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col col-xs img-responsive">
-        <img class="img-fluid" src="{% static 'images/withdraw.jpeg' %}">
-        <figcaption class="figure-caption">Withdrawal.</figcaption>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Withdrawals Pie Chart
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body text-center">
+            <div class="col col-xs img-responsive">
+              <img class="img-fluid" src="{% static 'images/withdraw.jpeg' %}">
+              <figcaption class="figure-caption">Withdrawals</figcaption>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Credit Score Report
+            </button>
+          </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            <div class="row text-center">
+              <div class="col col-xs img-responsive">
+                <img class="img-fluid" src="{% static 'images/individual.jpeg' %}">
+                <figcaption class="figure-caption">Your Spendings</figcaption>
+              </div>
+              <div class="col-sm-12 text-center" style="margin: 40px;">
+                <p>
+                  <h2 class="display-4">{{savings_per}}</h2>
+                </p>
+              </div>
+              <div class="col-sm-12">
+                {% if credit_app %}
+                <h2><a href="{% url 'creditreg' %}" class="lead">To apply for credit card Click Here!</a></h2>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="row text-center">
-      <div class="col col-xs img-responsive">
-        <img class="img-fluid" src="{% static 'images/individual.jpeg' %}">
-        <figcaption class="figure-caption">Your Spendings</figcaption>
+
+    <footer class="bg-dark text-light py-2">
+      <div class="row">
+        <div class="col-3 text-center">
+          <div class="text-center">
+            <img src="{% static 'images/brand.jpg' %}" alt="" style="width: 100px;">
+          </div>
+          <h2 class="">MoneyMe</h2>
+        </div>
+        <div class="col">
+            <p class="text-light mb-2"><em>Know your credit score:</em> Knowing your credit score can help you get the things you want. We’ll generate yours, no credit card required.</p>
+            <p class="text-light mb-2">
+            <em>We stay on top of things for you:</em> We alert you whenever there’s something you should know. We’ll tell you if you’re being charged fees, going over budget, if something seems suspicious and more. Plus, you’ll get a summary that shows you how you’re doing week to week.
+            </p>
+            <p class="text-light mb-2">
+            <em>Fast and free:</em> Just verify your identity, and you’ll get your free credit report summary within minutes. It’s especially helpful to see your credit score and accounts in the same place with no need to log on anywhere else.
+            </p>
+        </div>
       </div>
-    </div>
-    <div class="col-sm-12 text-center" style="margin: 40px;">
-      <p>
-        <h2>{{savings_per}}</h2>
-      </p>
-    </div>
+    </footer>
+
     <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>

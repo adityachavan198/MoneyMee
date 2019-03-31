@@ -18,26 +18,73 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
   </head>
   <body>
-    <div class="container text-center">
+    <div class="container-fluid text-center">
       {% if user.is_authenticated %}
-      <nav class="nav justify-content-center">
-        <a class="nav-link active disabled" href="#">Home</a>
-        <a class="nav-link" href="{% url 'summary' %}">Summary</a>
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      <nav class="nav justify-content-center mb-2 bg-warning">
+        <a class="nav-link active disabled display-4" href="#">Home</a>
+        <a class="nav-link display-4" href="{% url 'summary' %}">Summary</a>
+        <a class="nav-link display-4" href="{% url 'logout' %}">Logout</a>
       </nav>
-      <h2 class="display-3 mb-4">Welcome {{user.first_name}} !</h2>
 
-      <img src="{% static 'images/main-bg.jpg' %}" class="img-fluid w-50" alt="">
+      <div class="text-center">
+        <img src="{% static 'images/brand.jpg' %}" alt="" style="width: 100px;">
+      </div>
 
-      <p class="lead">
+      <h2 class="display-1 mb-4">Welcome {{user.first_name}} !</h2>
+      <p class="lead my-3">
         Our FinTech app helps you manage all your bills in one place, saving a whole lot of time.
       </p>
 
+      <img src="{% static 'images/main-bg.jpg' %}" class="img-fluid w-50 shadow" alt="">
+      <hr>
+
+<div class="row">
+  <div class="col text-right">
+      <h2 class="display-3 my-4 py-2">Features</h2>
+      <ul class="lead">
+        <li>Track bills</li>
+        <li>Easy Budgeting</li>
+        <li>Generation of credit score</li>
+        <li>Alerts and advice</li>
+        <li>Investment Tracking</li>
+      </ul>
+  </div>
+  <div class="col text-left">
+      <h2 class="display-3 my-4 py-2">Track Bills</h2>
+      <ul class="lead">
+        <li>See bills and money in one place.</li>
+        <li>Track all your bills here.</li>
+        <li>Pay on time and get alerts if funds are low.</li>
+        <li>Get warnings when your accounts are low.</li>
+        <li>Large or suspicious transactions, we let you know right away.</li>
+      </ul>
+  </div>
+</div>
+<footer class="bg-dark text-light py-2">
+  <div class="row">
+    <div class="col-3 text-center">
+      <div class="text-center">
+        <img src="{% static 'images/brand.jpg' %}" alt="" style="width: 100px;">
+      </div>
+      <h2 class="">MoneyMe</h2>
+    </div>
+    <div class="col">
+        <p class="text-light mb-2"><em>Know your credit score:</em> Knowing your credit score can help you get the things you want. We’ll generate yours, no credit card required.</p>
+        <p class="text-light mb-2">
+        <em>We stay on top of things for you:</em> We alert you whenever there’s something you should know. We’ll tell you if you’re being charged fees, going over budget, if something seems suspicious and more. Plus, you’ll get a summary that shows you how you’re doing week to week.
+        </p>
+        <p class="text-light mb-2">
+        <em>Fast and free:</em> Just verify your identity, and you’ll get your free credit report summary within minutes. It’s especially helpful to see your credit score and accounts in the same place with no need to log on anywhere else.
+        </p>
+    </div>
+  </div>
+</footer>
       {% else %}
-      <h3 class="display-3">You are not logged in!</h3>
-      <a href="{% url 'showlogin' %}">Login again</a>
+      <h3 class="display-2">Thank you, you have now been logged out</h3>
+      <a href="{% url 'showlogin' %}" class="display-4 my-4">Login again</a>
       {% endif %}
     </div>
+
 
     <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>

@@ -178,11 +178,16 @@ def summary(request):
     m = calling(request.user.id)
     if m > 20:
         m = 'You have A Grade Credit Score'
+        x = True
     else:
         m = 'Your Credit Score is below Average'
-    return render(request, 'Money/summary.html',{'transaction': l, 'savings_per': m})
+        x = False
+    return render(request, 'Money/summary.html',{'transaction': l, 'savings_per': m, 'credit_app': x})
 
-
+def creditreg(request):
+    c = CreditApplication(uid = request.user)
+    c.save()
+    return render(request, 'Money/credit_success.html')
 
 # def trial(request):
 #     pass

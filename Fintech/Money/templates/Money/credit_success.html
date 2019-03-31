@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Application Successful</title>
+    {% load static %}
+
+    <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  </head>
+  <body>
+    <div class="container text-center">
+      <h1 class="display-2">You have successfully applied for Credit card.</h1>
+      <a href="{% url 'loginuser' %}" class="display-4">Head back home</a>
+    </div>
+
+    <footer class="bg-dark text-light py-2">
+      <div class="row">
+        <div class="col-3 text-center">
+          <div class="text-center">
+            <img src="{% static 'images/brand.jpg' %}" alt="" style="width: 100px;">
+          </div>
+          <h2 class="">MoneyMe</h2>
+        </div>
+        <div class="col">
+            <p class="text-light mb-2"><em>Know your credit score:</em> Knowing your credit score can help you get the things you want. We’ll generate yours, no credit card required.</p>
+            <p class="text-light mb-2">
+            <em>We stay on top of things for you:</em> We alert you whenever there’s something you should know. We’ll tell you if you’re being charged fees, going over budget, if something seems suspicious and more. Plus, you’ll get a summary that shows you how you’re doing week to week.
+            </p>
+            <p class="text-light mb-2">
+            <em>Fast and free:</em> Just verify your identity, and you’ll get your free credit report summary within minutes. It’s especially helpful to see your credit score and accounts in the same place with no need to log on anywhere else.
+            </p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>
