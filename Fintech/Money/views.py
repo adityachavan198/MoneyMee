@@ -11,6 +11,8 @@ from django.core.mail import EmailMessage
 import json
 from random import randint
 import matplotlib
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 # Create your views here.
 
@@ -21,7 +23,7 @@ def index(request):
     #     # 'stands': Stand.objects.all()
     #     # 'logs': Log.objects.all()
     # }
-    return render(request, "Money/index.html")
+    return redirect(showlogin)
 def plott(li, name, l2):
     k = dict()
     for i in set(li):
@@ -68,6 +70,17 @@ def registeruser(request):
     else:
         return HttpResponse(json.dumps(["True"]), content_type='application/json')
 
+# def get_percent(u):
+#     return
+#     {
+#     'food' :  100*df['Food'][u] / df['Total Expense'][u],
+#     'elec': 100 * df['Electronics'][u] / df['TotalExpense'][u],
+#     'cloth' : 100 * df['Clothes'][u] / df['Total Expense'][u],
+#     'health': 100 * df['Health'][u] / df['Total Expense'][u],
+#     'medicine' : 100 * df['Medicine'][u] / df['Total Expense'][u],
+#     'ent' : 100 * df['Entertainment'][u] / df['Total Expense'][u]
+#     }
+
 def logmeout(request):
     logout(request)
     return render(request, 'Money/home.html')
@@ -94,6 +107,39 @@ def authenticateuser(request):
                 return HttpResponse(json.dumps(["False"]), content_type='application/json')
     else:
         return render(request, 'Money/home.html')
+
+def get_percent(u,df):
+    t = {'food' :  100*df['Food'][u]/df['Total Expense'][u],
+    'elec': 100*df['Electronics'][u]/df['Total Expense'][u],
+    'cloth' : 100*df['Clothes'][u]/df['Total Expense'][u],
+    'health' : 100*df['Health'][u]/df['Total Expense'][u],
+    'medicine' : 100*df['Medicine'][u]/df['Total Expense'][u],
+    'ent' : 100*df['Entertainment'][u]/df['Total Expense'][u]}
+    return [t, float(df['Savings'][u][:5])]
+
+barWidth = 0.4
+
+def calling(u):
+    df = pd.read_csv('/Users/adityachavan/Documents/GitHub/MoneyMee/Fintech/Money/static/wohoo_data.csv')
+    df.sum()[0]
+    bars1 = list(get_percent(u,df)[0].values())
+    bars2 = [100*df.sum(axis=0)[i]/df.sum()['Total Expense'] for i in range(3,9)]
+    r1 = np.arange(len(bars1))
+    r2 = [x + barWidth for x in r1]
+    r3 = [x + barWidth for x in r2]
+
+    plt.bar(r1, bars1, color='r', width=barWidth, edgecolor='white', label='User')
+    plt.bar(r2, bars2, color='b', width=barWidth, edgecolor='white', label='World Avg')
+
+
+    plt.xlabel('Spending', fontweight='bold')
+    plt.xticks([r + barWidth for r in range(len(bars1))], ['Food', 'Electronics', 'Clothes', 'Health', 'Medicine', 'Entertainment'])
+    print('savings percent', get_percent(u,df)[1])
+
+    plt.legend()
+    plt.savefig('Money/static/images/individual.jpeg',format='jpeg')
+    plt.clf()
+    return get_percent(u,df)[1]
 
 def summary(request):
     print('summary')
@@ -128,8 +174,15 @@ def summary(request):
     print('withdrawtypes_set', withdrawtypes_set)
     print('\n\n\n\n\n\n\n\n')
     print(l)
-    print(uid)
-    return render(request, 'Money/summary.html',{'transaction': l})
+    print("asdsafasf",uid)
+    m = calling(request.user.id)
+    if m > 20:
+        m = 'You have A Grade Credit Score'
+    else:
+        m = 'Your Credit Score is below Average'
+    return render(request, 'Money/summary.html',{'transaction': l, 'savings_per': m})
+
+
 
 # def trial(request):
 #     pass
@@ -148,7 +201,8 @@ def fromapi(BankAccount_id , deposit, amount, type_id):
     else :
         ba.balance -= amount
     ba.save()
-    return HttpResponse(json.dumps(["True"]), content_type='application/json')
+    return redirect(showapi)
+    # return HttpResponse(json.dumps(["True"]), content_type='application/json')
 
 def doit(request):
     return fromapi(int(request.POST['BankAccount_id']) , bool(int(request.POST['deposit'])), float(request.POST['amount']), int(request.POST['type_id']))
