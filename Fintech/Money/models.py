@@ -28,7 +28,7 @@ class Bank(models.Model):
     bid = models.AutoField(primary_key= True)
     bank_name = models.CharField(max_length=100)
     def __str__(self):
-        return self.bid
+        return str(self.bid)
 
 class BankAccount(models.Model):
     aid = models.AutoField(primary_key= True)
