@@ -18,8 +18,12 @@
   	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
   </head>
   <body>
-
-    <table class="table text-center">
+      <nav class="nav justify-content-center">
+          <a class="nav-link" href="{% url 'loginuser' %}">Home</a>
+          <a class="nav-link active disabled" href="#">Summary</a>
+          <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </nav>
+    <table class="table text-center" style="margin-top: 100px; margin-bottom: 100px;">
       <thead>
         <td>Transaction No</td>
         <td>Account No</td>
@@ -40,20 +44,26 @@
       </tr>
       {% endfor %}
     </table>
-    <div class="row text-center">
-      <div class="col">
+    <div class="row text-center row">
+      <div class="col col-xs img-responsive">
         <img class="img-fluid" src="{% static 'images/deposit.jpeg' %}">
         <figcaption class="figure-caption">Deposits.</figcaption>
       </div>
-      <div class="col">
+      <div class="col col-xs img-responsive">
         <img class="img-fluid" src="{% static 'images/withdraw.jpeg' %}">
         <figcaption class="figure-caption">Withdrawal.</figcaption>
       </div>
     </div>
 
-
-
-
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
   </body>
 </html>

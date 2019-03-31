@@ -3,13 +3,50 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    {% load static %}
+
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/daterangepicker/daterangepicker.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
   </head>
   <body>
-    {% if user.is_authenticated %}
-    <h3> Welcome {{user.username}} ! </h3>
-    <a href="{% url 'summary' %}">Check summary</a>
-    {% else %}
-    <h3>You are not logged in!</h3>
-    {% endif %}
+    <div class="container text-center">
+      {% if user.is_authenticated %}
+      <nav class="nav justify-content-center">
+        <a class="nav-link active disabled" href="#">Home</a>
+        <a class="nav-link" href="{% url 'summary' %}">Summary</a>
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </nav>
+      <h2 class="display-3 mb-4">Welcome {{user.first_name}} !</h2>
+
+      <img src="{% static 'images/main-bg.jpg' %}" class="img-fluid w-50" alt="">
+
+      <p class="lead">
+        Our FinTech app helps you manage all your bills in one place, saving a whole lot of time.
+      </p>
+
+      {% else %}
+      <h3 class="display-3">You are not logged in!</h3>
+      <a href="{% url 'showlogin' %}">Login again</a>
+      {% endif %}
+    </div>
+
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'vendor/animsition/js/animsition.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'vendor/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'vendor/daterangepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'vendor/countdowntime/countdowntime.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

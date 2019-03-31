@@ -68,25 +68,32 @@ def registeruser(request):
     else:
         return HttpResponse(json.dumps(["True"]), content_type='application/json')
 
-def authenticateuser(request):
-    device = request.POST['device'].split(" ")[0]
-    email = request.POST['email']
-    password = request.POST['password']
-    user = authenticate(username=email, password=password)
-    print(email,password,"\n\n\n\n\n\n\n\n\n\n")
-    login(request, user)
-    if user is not None:
-        login(request, user)
-        if device == 'web':
-            return render(request, 'Money/home.html', {})
-        else:
-            return HttpResponse(json.dumps(["True"]), content_type='application/json')
+def logmeout(request):
+    logout(request)
+    return render(request, 'Money/home.html')
 
-    else:
-        if device == 'web':
-            return render(request, 'Money/login.html', {'loginfail' : True })
+def authenticateuser(request):
+    if request.method == 'POST':
+        device = request.POST['device'].split(" ")[0]
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(username=email, password=password)
+        print(email,password,"\n\n\n\n\n\n\n\n\n\n")
+        # login(request, user)
+        if user is not None:
+            login(request, user)
+            if device == 'web':
+                return render(request, 'Money/home.html', {})
+            else:
+                return HttpResponse(json.dumps(["True"]), content_type='application/json')
+
         else:
-            return HttpResponse(json.dumps(["False"]), content_type='application/json')
+            if device == 'web':
+                return render(request, 'Money/login.html', {'loginfail' : True })
+            else:
+                return HttpResponse(json.dumps(["False"]), content_type='application/json')
+    else:
+        return render(request, 'Money/home.html')
 
 def summary(request):
     print('summary')
