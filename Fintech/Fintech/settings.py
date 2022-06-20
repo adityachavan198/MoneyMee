@@ -75,15 +75,15 @@ WSGI_APPLICATION = 'Fintech.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {    'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'money',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
+        'NAME': 'u708089898_moneyme',
+        'USER': 'u708089898_money',
+        'PASSWORD': 'MoneyMe',
+        'HOST': 'sql170.main-hosting.eu',
         'PORT': '' ,
+
     }
 }
 
